@@ -1,0 +1,104 @@
+\section{Matrici Rappresentative}
+
+In questa sezione introdurremo il concetto di matrice rappresentativa.
+
+\subsection{Applicazione delle Coordinate}
+
+Sia $V$ uno spazio vettoriale di dimensione finita $n$ sul campo $\mathbb{K}$ e sia $\mathcal{B} = \{v_1, v_2, \dots, v_n\}$ una sua base ordinata. 
+Per il teorema di esistenza e unicità della decomposizione su una base, ogni vettore $v \in V$ si scrive in modo unico come combinazione lineare dei vettori di $\mathcal{B}$:
+\[
+v = x_1 v_1 + x_2 v_2 + \dots + x_n v_n = \sum_{j=1}^{n} x_j v_j, \quad \text{con } x_j \in \mathbb{K}
+\]
+
+\begin{definition}[Vettore delle Coordinate]
+Si definisce \textbf{applicazione delle coordinate} (o isomorfismo delle coordinate) associata alla base $\mathcal{B}$ la funzione:
+\[
+[\,\cdot\,]_{\mathcal{B}} : V \longrightarrow \mathbb{K}^n, \quad v \longmapsto [v]_{\mathcal{B}} = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix}
+\]
+Il vettore colonna $[v]_{\mathcal{B}} \in \mathbb{K}^n$ è detto \textbf{vettore delle coordinate di $v$ rispetto alla base $\mathcal{B}$}.
+\end{definition}
+
+\subsection{Costruzione della Matrice Rappresentativa}
+Siano ora $V$ e $W$ due spazi vettoriali su $\mathbb{K}$ di dimensione $\dim V = n$ e $\dim W = m$. 
+Fissiamo due basi ordinate:
+\begin{itemize}
+    \item $\mathcal{B} = \{v_1, v_2, \dots, v_n\}$ base di $V$;
+    \item $\mathcal{C} = \{w_1, w_2, \dots, w_m\}$ base di $W$.
+\end{itemize}
+Sia $f: V \to W$ un'applicazione lineare. 
+Vogliamo capire come agisce $f$ sui vettori di $V$ tramite le coordinate.
+L'immagine di ciascun vettore della base $\mathcal{B}$ tramite $f$ appartiene a $W$, quindi può essere espressa in modo unico come combinazione lineare dei vettori della base $\mathcal{C}$:
+\[
+f(v_j) = \sum_{i=1}^{m} a_{i,j} w_i, \quad \text{per } j = 1, \dots, n
+\]
+
+Ne consegue che il vettore delle coordinate di $f(v_j)$ rispetto a $\mathcal{C}$ è dato dalla colonna:
+\[
+[f(v_j)]_{\mathcal{C}} = \begin{pmatrix} a_{1,j} \\ a_{2,j} \\ \vdots \\ a_{m,j} \end{pmatrix} \in \mathbb{K}^m
+\]
+
+Prendiamo un generico vettore $v \in V$ con coordinate $[v]_{\mathcal{B}} = (x_1, \dots, x_n)^T$. Sfruttando la linearità di $f$, calcoliamo la sua immagine:
+\[
+f(v) = f\left( \sum_{j=1}^{n} x_j v_j \right) = \sum_{j=1}^{n} x_j f(v_j) = \sum_{j=1}^{n} x_j \left( \sum_{i=1}^{m} a_{i,j} w_i \right) = \sum_{i=1}^{m} \left( \sum_{j=1}^{n} a_{i,j} x_j \right) w_i
+\]
+Osservando i coefficienti di $w_i$, notiamo che la $i$-esima coordinata di $f(v)$ rispetto alla base $\mathcal{C}$ è esattamente la somma $\sum_{j=1}^{n} a_{i,j} x_j$. 
+
+Se disponiamo i coefficienti $a_{i,j}$ in una matrice $A \in M_{m \times n}(\mathbb{K})$, questa operazione coincide perfettamente con il prodotto riga per colonna tra la matrice $A$ e il vettore $[v]_{\mathcal{B}}$:
+\[
+[f(v)]_{\mathcal{C}} = A \cdot [v]_{\mathcal{B}}
+\]
+Abbiamo ricavato quindi una matrice in grado di trasformare le $\mathcal{B}$-coordinate di $v$ nelle $\mathcal{C}$-coordinate di $f(v)$, riassumendo l'azione dell'applicazione lineare tramite una moltiplicazione matrice-vettore.
+
+\begin{definition}[Matrice Associata ad un'Applicazione Lineare]
+La \textbf{matrice associata all'applicazione lineare $f$} rispetto alle basi $\mathcal{B}$ e $\mathcal{C}$, indicata con $M_{\mathcal{B}}^{\mathcal{C}}(f) \in M_{m \times n}(\mathbb{K})$, è la matrice la cui $j$-esima colonna contiene le coordinate dell'immagine del $j$-esimo vettore della base $\mathcal{B}$ rispetto alla base $\mathcal{C}$:
+\[
+M_{\mathcal{B}}^{\mathcal{C}}(f) = \begin{pmatrix}
+| & | & & | \\
+[f(v_1)]_{\mathcal{C}} & [f(v_2)]_{\mathcal{C}} & \dots & [f(v_n)]_{\mathcal{C}} \\
+| & | & & |
+\end{pmatrix}
+\]
+\end{definition}
+Consideriamo ora due basi $\mathcal{A}$ e $\mathcal{B}$ dello stesso spazio vettoriale $V$. Ci chiediamo quale sia la relazione tra i due vettori coordinate $[v]_{\mathcal{A}}$ e $[v]_{\mathcal{B}}$ del generico $v \, \in V$. Proviamo a considerare un'applicazione che non cambi il vettore di partenza ma che ci permetta di scriverne la matrice rappresentativa. A questo scopo consideriamo l'applicazione identità $\text{id}:V \to V$ e la rispettiva matrice rappresentativa $M_{\mathcal{A}}^{\mathcal{B}}(\text{id})$ e per quanto detto in precedenza abbiamo che $[\text{id}(v)]_{\mathcal{B}}=[v]_{\mathcal{B}}=M_{\mathcal{A}}^{\mathcal{B}}(\text{id})[v]_{\mathcal{A}}$, abbiamo quindi ottenuto la matrice del cambiamento di base.
+
+\begin{definition}[Matrice di Cambiamento di Base]
+Siano $\mathcal{A} = \{u_1, u_2, \dots, u_n\}$ e $\mathcal{B} = \{v_1, v_2, \dots, v_n\}$ due basi ordinate dello stesso spazio vettoriale $V$. La \textbf{matrice di cambiamento di base} dalla base $\mathcal{A}$ alla base $\mathcal{B}$ è la matrice rappresentativa dell'applicazione identità $\text{id}_V: V \to V$ prendendo la base $\mathcal{A}$ nel dominio e la base $\mathcal{B}$ nel codominio:
+\[
+M_{\mathcal{A}}^{\mathcal{B}}(\text{id}) = \begin{pmatrix}
+| & | & & | \\
+[u_1]_{\mathcal{B}} & [u_2]_{\mathcal{B}} & \dots & [u_n]_{\mathcal{B}} \\
+| & | & & |
+\end{pmatrix} \in M_{n \times n}(\mathbb{K})
+\]
+tale che, per ogni $v \in V$, vale la relazione:
+\[
+[v]_{\mathcal{B}} = M_{\mathcal{A}}^{\mathcal{B}}(\text{id}) \cdot [v]_{\mathcal{A}}
+\]
+\end{definition}
+
+\begin{proposition}[Invertibilità della Matrice di Cambiamento di Base]
+La matrice di cambiamento di base $M_{\mathcal{A}}^{\mathcal{B}}(\text{id})$ è sempre invertibile, e la sua inversa coincide con la matrice di cambiamento di base opposto (dalla base $\mathcal{B}$ alla base $\mathcal{A}$):
+\[
+\left( M_{\mathcal{A}}^{\mathcal{B}}(\text{id}) \right)^{-1} = M_{\mathcal{B}}^{\mathcal{A}}(\text{id})
+\]
+\end{proposition}
+
+\begin{proof}
+Siano $\mathcal{A}$ e $\mathcal{B}$ due basi dello spazio vettoriale $V$. Consideriamo la composizione dell'applicazione identità con se stessa $\text{id}_V \circ \text{id}_V = \text{id}_V$, intesa come:
+\[
+(V, \mathcal{A}) \xrightarrow{\quad \text{id}_V \quad} (V, \mathcal{B}) \xrightarrow{\quad \text{id}_V \quad} (V, \mathcal{A})
+\]
+Per la proprietà della matrice associata alla composizione di due applicazioni lineari, si ha:
+\[
+M_{\mathcal{B}}^{\mathcal{A}}(\text{id}) \cdot M_{\mathcal{A}}^{\mathcal{B}}(\text{id}) = M_{\mathcal{A}}^{\mathcal{A}}(\text{id} \circ \text{id}) = M_{\mathcal{A}}^{\mathcal{A}}(\text{id})
+\]
+La matrice $M_{\mathcal{A}}^{\mathcal{A}}(\text{id})$ rappresenta l'identità rispetto alla stessa base $\mathcal{A}$ sia in ingresso che in uscita. Poiché le coordinate del $j$-esimo vettore della base $\mathcal{A}$ rispetto a se stessa costituiscono il $j$-esimo vettore della base canonica $e_j \in \mathbb{K}^n$, tale matrice è la matrice identità $I_n$:
+\[
+M_{\mathcal{B}}^{\mathcal{A}}(\text{id}) \cdot M_{\mathcal{A}}^{\mathcal{B}}(\text{id}) = I_n
+\]
+In modo del tutto analogo, scambiando il ruolo delle due basi nella composizione, si ottiene:
+\[
+M_{\mathcal{A}}^{\mathcal{B}}(\text{id}) \cdot M_{\mathcal{B}}^{\mathcal{A}}(\text{id}) = M_{\mathcal{B}}^{\mathcal{B}}(\text{id}) = I_n
+\]
+Rimanendo così verificato che la matrice $M_{\mathcal{A}}^{\mathcal{B}}(\text{id})$ è invertibile sia a destra che a sinistra con inversa pari a $M_{\mathcal{B}}^{\mathcal{A}}(\text{id})$.
+\end{proof}
